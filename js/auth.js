@@ -1,50 +1,34 @@
+// Purpose: This file is responsible for initializing the Auth0 client and setting up the login button to redirect to the Auth0 login page.
+import createAuth0Client from '@auth0/auth0-spa-js';
+
 let auth0 = null;
 
-const initAuth = async () => {
-    console.log('window.createAuth0Client:', window.createAuth0Client);
-    if (typeof window.createAuth0Client !== 'function') {
-        console.error('Error: createAuth0Client is not a function. Check if Auth0 script loaded.');
-        return;
+async function initAuth0() {
+    try {
+        auth0 = await createAuth0Client({
+            domain: 'dev-hsmyim6kzl743yz0.us.auth0.com',
+            client_id: 'OqlB3cKWSsKpLWb8sHMWdOgI9JSWEcIe',
+            redirect_uri: window.location.origin
+        });
+    } catch (error) {
+        console.error('Failed to initialize Auth0:', error);
     }
-    auth0 = await window.createAuth0Client({
-        domain: "dev-hsmyim6kzl743yz0.us.auth0.com",
-        client_id: "OqlB3cKWSsKpLWb8sHMWdOgI9JSWEcIe",
-        redirectUri: window.location.origin
-    });
-    updateUI();
-};
+}
 
-const updateUI = async () => {
-    const user = await auth0.getUser();
-    const isAuthenticated = user != null;
-    document.getElementById("login").style.display = isAuthenticated ? "none" : "block";
-    document.getElementById("logout").style.display = isAuthenticated ? "block" : "none";
-    if (isAuthenticated) {
-        document.getElementById("user-info").innerText = `Logged in as: ${user.name}`;
-    }
-};
+async function setup() {
+    const loginBtn = document.getElementById('login');
+    loginBtn.disabled = true;
 
-document.getElementById("login").addEventListener("click", async () => {
-    await auth0.loginWithRedirect();
-});
+    await initAuth0();
 
-document.getElementById("logout").addEventListener("click", async () => {
-    await auth0.logout({ returnTo: window.location.origin });
-});
-
-
-window.addEventListener('load', function() {
-    if (typeof window.createAuth0Client === 'function') {
-      // Your Auth0 initialization code
-      createAuth0Client({
-        domain: 'dev-hsmyim6kzl743yz0.us.auth0.com',
-        clientId: 'OqlB3cKWSsKpLWb8sHMWdOgI9JSWEcIe'
-      }).then(auth0 => {
-        console.log('Auth0 initialized:', auth0);
-      }).catch(error => {
-        console.error('Auth0 initialization failed:', error);
-      });
+    if (auth0) {
+        loginBtn.disabled = false;
+        loginBtn.addEventListener('click', async () => {
+            await auth0.loginWithRedirect();
+        });
     } else {
-      console.error('Auth0 script not loaded');
+        console.error('Auth0 initialization failed');
     }
-  });
+}
+
+setup();
