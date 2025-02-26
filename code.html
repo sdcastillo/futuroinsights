@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Predictive Analyst</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free A.I. Tutorials" name="keywords">
+    <meta content="Predictive Analytics" name="description">
+    <script src="js/auth.js"></script>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .center-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark">
+        <div class="row py-2 px-lg-5">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center text-white">
+                    <small><i class="fa fa-phone-alt mr-2"></i></small>
+                    <small class="px-3">|</small>
+                    <small><i class="fa fa-envelope mr-2"></i>Sam@PredictiveInsightsAI.com</small>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-2" href="https://x.com/SamCast65215624">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-white px-2" href="https://www.linkedin.com/in/AI101">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-white pl-2" href="https://www.youtube.com/@predictiveanalyst">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>Predictive Analyst
+                </h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mx-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="buy.html" class="nav-item nav-link">Solutions</a>
+                    <a href="code.html" class="nav-item nav-link active">Code</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <div class="container center-text">
+        <div>
+            
+            
+            <h2>📂 Get the Code</h2>
+            <p>All notebooks are available in our GitHub repository. Fork the repo and start using them today!</p>
+            <a href="https://github.com/sdcastillo/ExamPAContent" target="_blank" class="github-button">🚀 Fork on GitHub</a>
+
+            <h2>💡 Why Use These Notebooks?</h2>
+            <ul style="list-style-type: none;">
+                <li>🔹 Ready-to-use templates for predictive modeling</li>
+                <li>🔹 Learn from structured examples</li>
+                <li>🔹 Modify and customize for your own projects</li>
+                <li>🔹 Open-source and completely free</li>
+            </ul>
+
+        
+        
+            <ul id="resource-list"></ul>
+    
+            <h2>💡 How to Use These Notebooks</h2>
+            <ul>
+                <li>🔹 Click on any file name to view it on GitHub.</li>
+                <li>🔹 For solution files (`--solution.html`), they will be embedded below for easy viewing.</li>
+                <li>🔹 Fork the repository to start using these notebooks for your projects.</li>
+            </ul>
+    
+            <script>
+                // GitHub API URL for your repository
+                const apiUrl = 'https://api.github.com/repos/sdcastillo/ExamPAContent/contents/';
+    
+                // Function to fetch and display repository contents
+                async function fetchRepoContents() {
+                    try {
+                        const response = await fetch(apiUrl);
+                        const data = await response.json();
+                        const resourceList = document.getElementById('resource-list');
+    
+                        data.forEach(item => {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+                            link.href = item.html_url;
+                            link.textContent = item.name;
+                            link.target = '_blank';
+                            listItem.appendChild(link);
+    
+                            // Check if the file is an HTML solution file and embed it
+                            if (item.name.endsWith('--solution.html')) {
+                                const iframe = document.createElement('iframe');
+                                iframe.src = `https://htmlpreview.github.io/?${item.html_url}`;
+                                iframe.width = "100%";
+                                iframe.height = "600";
+                                iframe.style.border = "1px solid #ccc";
+                                listItem.appendChild(document.createElement('br'));
+                                listItem.appendChild(iframe);
+                            }
+    
+                            resourceList.appendChild(listItem);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching repository contents:', error);
+                    }
+                }
+    
+                // Fetch and display contents on page load
+                fetchRepoContents();
+            </script>
+            
+        
+            <h3>Legal Notice</h3>
+            <p>
+                The code, analysis, and materials (“Materials”) in this repository are provided by Sam (“Author”). These Materials incorporate concepts from educational templates and exam-preparation content for actuarial exams. The Author does not claim ownership of any pre-existing template resources.
+                
+                These Materials are made available solely for personal, educational use—particularly for individuals studying or considering a career in actuarial science or preparing for actuarial exams such as Exam PA.
+                
+                License & Restrictions:
+                
+            </p>
+            
+            <h4>License & Restrictions:</h4>
+            
+            Copyright © 2025, Sam Castillo.
+            No part of these Materials may be reproduced, modified, or distributed without the Author’s prior written consent.
+            These Materials are provided “as is” without warranty of any kind, and the Author disclaims any liability for their use.
+            For license or legal inquiries, please contact:
+            <br>
+            Sam@PredictiveInsightsAI.com
+        
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+        <div class="container mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Get In Touch</h3>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Massachusetts, USA</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>0</p>
+                    <p><i class="fa fa-envelope mr-2"></i>Sam@PredictiveInsightsAI.com</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
+                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="d-flex flex-column justify-content-start">
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4"></h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="https://sway.cloud.microsoft/z87mrwFF07kNHk8a?ref=Link"><i class="fa fa-angle-right mr-2"></i>Privacy Policy</a>
+                        <a class="text-white-50 mb-2" href="https://sway.cloud.microsoft/ZgeokYGafM3Kc8tO?ref=Link"><i class="fa fa-angle-right mr-2"></i>Terms &
+                            Condition</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">2024 Copyright &copy; <a class="text-white" href="#">Predictive Analyst</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <!-- Start of Sam Castillo Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=5e4d017c-ca30-4b24-aaa4-27885f819277"> </script>
+    <!-- End of Sam Castillo Zendesk Widget script -->
+
+
+</body>
+</html>
