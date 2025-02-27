@@ -7,7 +7,7 @@ async function initAuth0() {
     try {
         auth0 = await createAuth0Client({
             domain: 'dev-hsmyim6kzl743yz0.us.auth0.com',
-            client_id: 'OqlB3cKWSsKpLWb8sHMWdOgI9JSWEcIe',
+            client_id: 'lo8WJdsOHtE8Urz1dzunYIk17irwqD8m',
             redirect_uri: window.location.origin
         });
     } catch (error) {
