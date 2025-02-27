@@ -46,7 +46,8 @@ async function initAuth0() {
             const auth0Client = await window.auth0.createAuth0Client({
                 domain: 'dev-hsmyim6kzl743yz0.us.auth0.com',
                 client_id: 'lo8WJdsOHtE8Urz1dzunYIk17irwqD8m',
-                redirectUri: window.location.origin
+                redirectUri: window.location.origin,
+                audience: 'https://dev-hsmyim6kzl743yz0.us.auth0.com/api/v2/'
             });
 
             let isAuthenticated = false;
